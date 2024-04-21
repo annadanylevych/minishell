@@ -72,7 +72,7 @@ int	main(int ac, char **av, char **envp)
 			{
 				data = ft_parser(function(&err.error, err.str), &err.error);
 				if (!err.error && data)
-					executing(data, env, &err);
+					env = executing(data, env, &err);
 				err.str = freestyle(err.error, &err.exit_code, data, err.str);
 				if (!err.str)
 					break ;

@@ -18,18 +18,21 @@ void	del_env_first(t_parser *parser, t_env **env, int i)
 	char	*tmp;
 
 	tmp = get_til_equal(parser->cmd[i]);
+	if (!env || !*env) 
+		return;
 	if ((*env)->name != NULL && ft_strcmp((*env)->name, tmp) == 0)
 	{
 		prev = (*env);
-		(*env) = (*env)->next;
+		if (!(*env)->next)
+			(*env) = NULL;
+		else
+			(*env) = (*env)->next;
 		free(prev->name);
 		free(prev->content);
 		free(prev);
-		free(tmp);
-		tmp = NULL;
+		prev = NULL;
 	}
-	if (tmp != NULL)
-		free(tmp);
+	free(tmp);
 }
 
 void	del_env(t_parser *parser, t_env **env, int i)
@@ -38,9 +41,13 @@ void	del_env(t_parser *parser, t_env **env, int i)
 	t_env	*iter;
 	char	*tmp;
 
+	if (!env || !*env) 
+		return;
 	del_env_first(parser, env, i);
 	prev = NULL;
 	iter = *env;
+	if (!env || !*env) 
+		return;	
 	while (iter != NULL)
 	{
 		tmp = get_til_equal(parser->cmd[i]);

@@ -52,4 +52,5 @@ void	three_free(void *one, void *two, void *three)
 	free(one);
 	free(two);
 	free(three);
+	three = NULL;
 }

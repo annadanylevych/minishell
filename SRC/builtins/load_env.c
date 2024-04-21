@@ -89,5 +89,6 @@ t_env	*load_env(char **envp)
 		else
 			env->next = NULL;
 	}
+	env->next = NULL;
 	return (start);
 }

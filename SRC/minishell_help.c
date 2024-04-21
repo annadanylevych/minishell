@@ -25,11 +25,15 @@ t_env	*inition_signals_env(int *error, int *exit_code, char **envp,
 	return (env);
 }
 
-void	executing(t_parser *data, t_env *env, t_errors *err)
+void	*executing(t_parser *data, t_env *env, t_errors *err)
 {
 	data = clean_input(data, env, err->exit_code);
 	heredock(&data, env, err->exit_code);
 	err->error = execute(data, &env, &err->exit_code);
+	if (env == NULL)
+		return (NULL);
+	else
+		return (env);
 }
 
 char	*freestyle(int error, int *exit_code, t_parser *data, char *str)

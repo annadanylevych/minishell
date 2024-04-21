@@ -32,7 +32,8 @@ char	**env_to_char(t_env *env)
 	int		i;
 
 	i = 0;
-	new_env = my_malloc(sizeof(char *) * (env_size(env) + 1));
+	if (env)
+		new_env = my_malloc(sizeof(char *) * (env_size(env) + 1));
 	while (env != NULL)
 	{
 		if (env->is_hidden == false)
@@ -44,6 +45,8 @@ char	**env_to_char(t_env *env)
 		}
 		env = env->next;
 	}
+	if (i == 0)
+		return (NULL);
 	new_env[i] = NULL;
 	return (new_env);
 }

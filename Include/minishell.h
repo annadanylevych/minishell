@@ -112,7 +112,7 @@ typedef struct s_tmp
 
 t_env				*inition_signals_env(int *error, int *exit_code,
 						char **envp, t_env *env);
-void				executing(t_parser *data, t_env *env, t_errors *err);
+void				*executing(t_parser *data, t_env *env, t_errors *err);
 char				*freestyle(int error, int *exit_code, t_parser *data,
 						char *str);
 void				my_add_history(char *str, char **av);
